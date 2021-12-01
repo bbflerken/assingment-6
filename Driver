@@ -1,111 +1,131 @@
 import java.util.Scanner;
 
 public class Driver {
-
+   
 	public static void main( String [ ] args )
 	{		
 		Scanner in = new Scanner (System.in);//Initializing scanner.
-		int count = 1;
-
-      System.out.println("===================================================");
-     	System.out.println("1.Merge Sort 2.Insertion Sort 3.Shell Sort 4.Quick Sort");
-     	System.out.println("===================================================");
-     	System.out.print("Select an option: ");
-      int choice = in.nextInt();
-
-      if(choice == 1)//Merge Sort
+		int count = 1, size;
+      while(true)
       {
-        	System.out.print("Enter the numbers of integers: ");//Asking user for number of elements in the array.
-        	int num = in.nextInt();
-        	int array[] = new int [num];//Creating array
-        		
-        	for(int i= 0; i < num ;i++)
-        	{
-        		System.out.print("Enter the " + count++ +" number");
-       		array[i]= in.nextInt();
-        	}
-       	mergeSort(array, 0, num-1);
-         print(array);
-        	//duplicates(array, num);
-     	}
-     	if(choice == 2)//Insertion Sort
-     	{
-        	System.out.print("Enter the numbers of integers: ");//Asking user for number of elements in the array.
-        	int num = in.nextInt();
-        	int array[] = new int [num];//Creating array
+         System.out.println("===================================================");
+         System.out.println("0. Quit 1.Merge Sort 2.Insertion Sort 3.Shell Sort 4.Quick Sort");
+     	   System.out.println("===================================================");
+     	   System.out.print("Select an option: ");
+         int choice = in.nextInt();
+
+         if(choice == 1)//Merge Sort
+         {
+           	System.out.print("Enter the numbers of integers: ");//Asking user for number of elements in the array.
+           	int num = in.nextInt();
+           	int array[] = new int [num];//Creating array
+           		
+           	for(int i= 0; i < num ;i++)//Storing  elements on the array
+           	{
+           		System.out.print("Enter the " + count++ +" number");
+          		array[i]= in.nextInt();
+           	}
+          	mergeSort(array, 0, num-1);//Calling merge sort
+           	size = duplicates(array, num-1);//Removing duplicates
+            System.out.print("The resulting array is: ");   //Printing array
+            print(array,0,size);//Calling Printing Function
+            System.out.print("The following numbers were duplicates: ");//Printing Duplicates
+            print(array,size, num-1);//Calling Printing function
+     	   }
+     	   else if(choice == 2)//Insertion Sort
+     	   {
+           	System.out.print("Enter the numbers of integers: ");//Asking user for number of elements in the array.
+           	int num = in.nextInt();
+           	int array[] = new int [num];//Creating array
          
-        	for(int i= 0; i < num ;i++)//Asking the user for the elements in the array
-        	{
-        		System.out.print("Enter the " + count++ +" number");
-       		array[i]= in.nextInt();
-        	}        		
-        	insertionsort(array);
-         print(array);
-        	//duplicates(array,num);
-        }
-     	if(choice == 3)//Shell Sort
-      {
-        	System.out.print("Enter the numbers of integers: ");//Asking user for number of elements in the array.
-        	int num = in.nextInt();
-        	int array[] = new int [num];//Creating array
+           	for(int i= 0; i < num ;i++)//Asking the user for the elements in the array
+           	{
+           		System.out.print("Enter the " + count++ +" number");
+          		array[i]= in.nextInt();
+           	}        		
+           	insertionsort(array);//Calling insertion sort
+           	size = duplicates(array, num-1);//Removing duplicates
+            System.out.print("The resulting array is: ");//Printing array
+            print(array,0, size);//Calling Printing Function
+            System.out.print("The following numbers were duplicates: ");//Printing Duplicates
+            print(array,size, num-1);//Calling Printing function
+           }
+     	   else if(choice == 3)//Shell Sort
+         {
+           	System.out.print("Enter the numbers of integers: ");//Asking user for number of elements in the array.
+           	int num = in.nextInt();
+           	int array[] = new int [num];//Creating array
          
-         for(int i= 0; i < num ;i++)//Asking the user for the elements in the array
-        	{
-        		System.out.print("Enter the " + count++ +" number");
-       		array[i]= in.nextInt();
-        	} 		
-        	shellsort(array);
-         print(array);
-         //duplicates(array, num);
-       }
-     	if(choice == 4)//Quick Sort
-     	{
-        	System.out.print("Enter the numbers of integers: ");//Asking user for number of elements in the array.
-        	int num = in.nextInt();
-        	int array[] = new int [num];//Creating array
+            for(int i= 0; i < num ;i++)//Asking the user for the elements in the array
+           	{
+           		System.out.print("Enter the " + count++ +" number");
+          		array[i]= in.nextInt();
+           	} 		
+           	shellsort(array);//Calling shell Sort 
+           	size = duplicates(array, num-1);//Removing duplicates
+            System.out.print("The resulting array is: ");//Printing array
+            print(array,0, size);//Calling Printing Function
+            System.out.print("The following numbers were duplicates: ");//Printing Duplicates
+            print(array,size, num-1);//Calling Printing function
+          }
+     	   else if(choice == 4)//Quick Sort
+     	   {
+          	System.out.print("Enter the numbers of integers: ");//Asking user for number of elements in the array.
+          	int num = in.nextInt();
+          	int array[] = new int [num];//Creating array
          	
-         for(int i= 0; i < num ;i++)//Asking the user for the elements in the array
-        	{
-        		System.out.print("Enter the " + count++ +" number");
-       		array[i]= in.nextInt();
-        	}
+           for(int i= 0; i < num ;i++)//Asking the user for the elements in the array
+          	{
+          		System.out.print("Enter the " + count++ +" number");
+         		array[i]= in.nextInt();
+          	}
         		
-        quicksort(array,0,num-1);
-        print(array);
-       //duplicates(array, num);
-       }
-      else
-        	System.exit(0);
+             quicksort(array,0,num-1);//Calling quick sort
+     	       size = duplicates(array, num-1);//Removing duplicates
+             System.out.print("The resulting array is: ");//Printing array
+             print(array,0, size);//Calling Printing Function
+             System.out.print("The following numbers were duplicates: ");//Printing Duplicates
+             print(array,size, num-1);//Calling Printing function
+         }
+         else if(choice ==0)
+            System.exit(0);//Terminate program
+
+         else
+         {	
+            System.out.println("===================================================");
+     	      System.out.println("0. Quit 1.Merge Sort 2.Insertion Sort 3.Shell Sort 4.Quick Sort");
+     	      System.out.println("===================================================");
+            System.out.println("Invalid slection! Please select again");
+            choice = in.nextInt();
+         }
+      }
    }
 	
-	public static void duplicates (int a [], int n)//function to remove duplicates 
+	public static int duplicates (int a [], int n)//function to remove duplicates 
 	{
-		int [] temp = new int[n];
-      int duplicates []= new int [n];
-		
-		int count = 0;
-      
-		for(int i= 0; i < n; i++ )
+      if(n==0 || n==1)//Verifies the size of the array
+         return n;
+         
+		int [] temp = new int[n];//Creates a temporarily array	
+		int count = 0;//Keeps track on the tmpArray
+            
+		for(int i= 0; i < n; i++ )//Loop to compare
 		{
-			if(a[i] != a[i+1])
-				temp[count++] = a[i];
-         else
-            duplicates[count++] = a[i+1]; 
+			if(a[i] != a[i+1])//Compare the first element to the follwing element on the array
+				temp[count++] = a[i];//Stores the element
 		}
-		
-		temp[count++] = a[n-1];
       
-		for(int i=0; i<count; i++)
+		temp[count++] = a[n-1];//Stores the last element
+      
+		for(int i=0; i<count; i++)//Transfer to original array
 			a[i] = temp[i];
          
-      System.out.print("The resulting array is: ");   
-      print(a);
-
+      return  count;//Return the new size of the array
 	}
 	
-   public static void print(int arr[])//Function to print sorted array
+   public static void print(int arr[], int initial, int end)//Function to print sorted array
    {   
-      for (int i = 0; i < arr.length; ++i)
+      for (int i = initial; i < end; ++i)
          System.out.print(arr[i] + " ");//Prints the array
       System.out.println();//Creates a new line
     }
@@ -114,10 +134,10 @@ public class Driver {
 	{
 		if(left < right)//Compares that left is less than right
 		{
-			int center = (left + (right-1)) / 2;//Gets the center position
+			int center = (left + right) / 2;//Gets the center position
 			mergeSort(a, left, center);//Recursively calls sorting routine for left side
 			mergeSort(a, center+1, right);//Recursively calls sorting routine for right side
-			merge(a, left, center+1, right);//Merge Routine Call
+			merge(a, left, center, right);//Merge Routine Call
 		}	
 	}
 	public static void merge(int [] a, int left, int center, int right) //MErge Algorithm
@@ -139,12 +159,12 @@ public class Driver {
             index2++; num++;//increment the index
          }	
      	}
-		while(index1 <= center)
+		while(index1 <= center)//Add elements on the left
       {
             tmpArray[num]=a[index1];//Pass the numbers to the temporary array
             index1++; num++;//increment the index 
       }
-		while(index2 <= right)
+		while(index2 <= right)//Add elements on the right
 		{
             tmpArray[num]=a[index2];//Pass the numbers to the temporary array
             index2++; num++;//increment the index 
